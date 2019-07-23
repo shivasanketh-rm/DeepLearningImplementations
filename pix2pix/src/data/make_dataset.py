@@ -73,7 +73,9 @@ def build_HDF5(jpeg_dir, nb_channels, data_dir, size=256):
             num_files = len(list_img)
             chunk_size = 100
             num_chunks = num_files / chunk_size
-            arr_chunks = np.array_split(np.arange(num_files), num_chunks)
+            print("num_chunks = ",num_chunks )
+            #arr_chunks = np.array_split(np.arange(num_files), num_chunks)
+            arr_chunks = np.split(np.arange(num_files), num_chunks)
 
             for chunk_idx in tqdm(arr_chunks):
 
