@@ -1,6 +1,8 @@
 import os
 import argparse
 
+# Import the backend
+import keras.backend as K
 
 def launch_training(**kwargs):
 
@@ -12,7 +14,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='Train model')
     parser.add_argument('patch_size', type=int, nargs=2, action="store", help="Patch size for D")
-    parser.add_argument('--backend', type=str, default="theano", help="theano or tensorflow")
+    parser.add_argument('--backend', type=str, default="tensorflow", help="theano or tensorflow")
     parser.add_argument('--generator', type=str, default="upsampling", help="upsampling or deconv")
     parser.add_argument('--dset', type=str, default="facades", help="facades")
     parser.add_argument('--batch_size', default=4, type=int, help='Batch size')
@@ -36,8 +38,7 @@ if __name__ == "__main__":
     elif args.backend == "tensorflow":
         os.environ["KERAS_BACKEND"] = "tensorflow"
 
-    # Import the backend
-    import keras.backend as K
+
 
     # manually set dim ordering otherwise it is not changed
     if args.backend == "theano":
